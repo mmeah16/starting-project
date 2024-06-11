@@ -1,5 +1,20 @@
 name: Events Demo 1
-on: ...
+on: 
+  # with below definition, job is run when 
+  # pull request is opened, not closed or edited 
+  # pull_request:
+  #   types:
+  #     - opened
+  workflow_dispatch:
+  # only pushes to the main branch will run workflow
+  push:
+    branches:
+      - main
+      # 'dev-*'
+    paths-ignore:
+      # workflow will be ignored if anything 
+      # in the workflow folder is changed 
+      -'.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
